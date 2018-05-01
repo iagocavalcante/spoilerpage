@@ -5,31 +5,76 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Another Simple Site</title>
+  <style>
+    body {
+      background-color: #692017;
+    }
+
+    .centralized {
+      margin: 0 auto;
+      width: 50%;
+      padding-top: 120px;
+    }
+
+    .center-text {
+      text-align: center;
+      color: #E3A156;
+      font-size: 50px;
+    }
+  </style>
 </head>
 <body>
-  <h1>Hello Guys, enjoy this app!</h1>
+  <section class="centralized">
+    <h1 class="center-text">Hello Guys, enjoy this app!</h1>
+  </section>
 </body>
 <script>
 
   const texts = [
-    '',
-    ''
+    'Homem-aranha morre!',
+    'Gamora Morre!',
+    'Groot Morre!',
+    'Doutor Estranho Morre!',
+    'Nick Fury Morre!',
+    'Senhor das Estrelas Morre!',
+    'Drax, O Destruidor Morre!',
+    'Loki Morre!',
+    'Heimdall Morre!',
+    'Visão Morre!',
+    'Wanda Morre!',
+    'Pantera Negra Morre!',
+    'Bucky Morre!',
+    'Thanos consegue as joias',
+    'Doutor Estranho sabe como vencer a guerra',
+    'Thor é destaque',
+    'Thor consegue construir machado',
+    'Hulk apanha do thanos',
+    'Hulk não aparece',
+    'Machado pode matar thanos',
+    'Capitão marvel é acionado',
+    'Alumas mortes são definitivas',
+    'Loki e gamora é morte real'
   ]
   
   const randomText = () => {
-
+    return texts[Math.floor(Math.random() * Math.floor(texts.length))]
   }
 
-  const speechConfig = new SpeechSynthesisUtterance();
-  const voices = window.speechSynthesis.getVoices();
-  speechConfig.voice = voices[10]; // Note: some voices don't support altering params
-  speechConfig.voiceURI = 'native';
-  speechConfig.volume = 1; // 0 to 1
-  speechConfig.rate = 1; //  0.1 to 10
-  speechConfig.pitch = 1; // 0 to 2
-  speechConfig.text = 'Alguém morre';
-  speechConfig.lang = 'pt-BR';
+  const speechConfig = new SpeechSynthesisUtterance()
+  const voices = window.speechSynthesis.getVoices()
+  speechConfig.voice = voices[10] // Note: some voices don't support altering params
+  speechConfig.voiceURI = 'native'
+  speechConfig.volume = 1 // 0 to 1
+  speechConfig.rate = 0.7 //  0.1 to 10
+  speechConfig.pitch = 1 // 0 to 2
+  speechConfig.text = randomText()
+  speechConfig.lang = 'pt-Br'
 
-  window.speechSynthesis.speak(speechConfig);
+  setInterval( function () {
+    speechConfig.text = randomText()
+    window.speechSynthesis.speak(speechConfig)
+  }, 1000)
+    
+
 </script>
 </html>
